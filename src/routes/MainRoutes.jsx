@@ -29,6 +29,7 @@ const DanhSachPhieuGiamGia = Loadable(lazy(() => import('views/pages/phieugiamgi
 // Sản phẩm
 const DanhSachSanPham = Loadable(lazy(() => import('views/pages/sanpham/DanhSachSanPham.jsx')));
 const ThemSanPham = Loadable(lazy(() => import('views/pages/sanpham/ThemSanPham.jsx')));
+const ImportSanPham = Loadable(lazy(() => import('views/pages/sanpham/importSanPham/ImportSanPham')));
 const SuaSanPham = Loadable(lazy(() => import('views/pages/sanpham/SuaSanPham.jsx')));
 // thuộc tính
 const DanhSachRam = Loadable(lazy(() => import('views/pages/sanpham/ram/DanhSachRam.jsx')));
@@ -40,6 +41,8 @@ const DanhSachHeDieuHanh = Loadable(lazy(() => import('views/pages/sanpham/hedie
 const DanhSachOCung = Loadable(lazy(() => import('views/pages/sanpham/ocung/DanhSachOCung.jsx')));
 const DanhSachMauSac = Loadable(lazy(() => import('views/pages/sanpham/mausac/DanhSachMauSac.jsx')));
 const DanhSachWebcam = Loadable(lazy(() => import('views/pages/sanpham/webcam/DanhSachWebcam.jsx')));
+const DanhSachNhuCau = Loadable(lazy(() => import('views/pages/sanpham/nhucau/DanhSachNhuCau.jsx')));
+const DanhSachThuongHieu = Loadable(lazy(() => import('views/pages/sanpham/thuonghieu/DanhSachThuongHieu.jsx')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -89,8 +92,12 @@ const MainRoutes = {
             element: <ThemSanPham/>
           },
           {
-            path: 'sua',
+            path: 'sua/:id',
             element: <><SuaSanPham/></>
+          },
+          {
+            path: 'themnhieusanpham',
+            element: <><ImportSanPham/></>
           },
           {
             path: 'ram',
@@ -165,6 +172,15 @@ const MainRoutes = {
             ]
           },
           {
+            path: 'nhucau',
+            children: [
+              {
+                path: 'danhsach',
+                element: <><DanhSachNhuCau/></>
+              }// Thêm các route add update detail ở đây
+            ]
+          },
+          {
             path: 'mausac',
             children: [
               {
@@ -172,7 +188,16 @@ const MainRoutes = {
                 element: <><DanhSachMauSac/></>
               }// Thêm các route add update detail ở đây
             ]
-          }
+          },
+          {
+            path: 'thuonghieu',
+            children: [
+              {
+                path: 'danhsach',
+                element: <><DanhSachThuongHieu/></>
+              }// Thêm các route add update detail ở đây
+            ]
+          },
         ]
     },
 

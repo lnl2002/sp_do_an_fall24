@@ -3,12 +3,12 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-import { Add, Edit } from '@mui/icons-material';
-import { IconButton, TextField } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Add } from '@mui/icons-material';
+import { TextField } from '@mui/material';
+import { useState } from 'react';
+import { createNewRam } from 'api/sanpham/thuonghieu';
 import { toast } from 'react-toastify';
 import { NotificationStatus } from 'utils/notification';
-import { updateRam } from 'api/sanpham/nhucau';
 
 const style = {
     position: 'absolute',
@@ -21,7 +21,7 @@ const style = {
     p: 5,
 };
 
-export default function ModalUpdate({fetchRams, info}) {
+export default function TransitionsModal({fetchRams}) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -29,8 +29,6 @@ export default function ModalUpdate({fetchRams, info}) {
         setOpen(false);
     };
 
-    
-    
     const [ram, setRam] = useState({
         ten: "",
         moTa: "",
@@ -41,16 +39,6 @@ export default function ModalUpdate({fetchRams, info}) {
         moTa: "",
         trangThai: 1
     });
-
-    useEffect(() => {
-        if(info && open){
-            setRam({
-                ten: info.ten,
-                moTa: info.moTa,
-                trangThai: 1
-            })
-        }
-    }, [info, open])
 
 
     const handleChange = (e) => {
@@ -96,12 +84,12 @@ export default function ModalUpdate({fetchRams, info}) {
         setError(newError);
 
         if (formValid) {
-           const res = await updateRam({
-            id: info.id,
-            moTa: ram.moTa,
+           const res = await createNewRam({
             ten: ram.ten,
+            moTa: ram.moTa,
             trangThai: ram.trangThai
            })
+           
            
            if(res){
             toast.success(NotificationStatus.CREATED)
@@ -115,10 +103,9 @@ export default function ModalUpdate({fetchRams, info}) {
 
     return (
         <div>
-            <IconButton color="primary" onClick={handleOpen}>
-            <Edit />
-            </IconButton>
-            
+            <Button endIcon={<Add />} onClick={handleOpen}>
+                Tạo mới
+            </Button>
             <Modal
                 aria-labelledby="transition-modal-title"
                 aria-describedby="transition-modal-description"
@@ -147,25 +134,23 @@ export default function ModalUpdate({fetchRams, info}) {
                                     fontSize: '30px'
                                 }}
                             >
-                                CHỈNH SỬA
+                                THÊM THƯƠNG HIỆU
                             </h2>
                             <TextField 
-                                label="Tên Nhu Cầu" 
+                                label="Tên Thương Hiệu" 
                                 style={{ width: '100%' }} 
                                 name="ten"
                                 error={!!error.ten}
                                 helperText={error.ten}
                                 onChange={handleChange}
-                                value={ram.ten}
                             />
                             <TextField 
-                                label="Mô Tả" 
+                                label="Mô tả" 
                                 style={{ width: '100%' }} 
                                 name="moTa"
                                 error={!!error.moTa}
                                 helperText={error.moTa}
                                 onChange={handleChange}
-                                value={ram.moTa}
                             />
                         </div>
                         <div style={{

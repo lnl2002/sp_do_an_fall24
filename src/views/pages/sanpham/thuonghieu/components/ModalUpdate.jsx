@@ -8,7 +8,7 @@ import { IconButton, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { NotificationStatus } from 'utils/notification';
-import { updateRam } from 'api/sanpham/nhucau';
+import { updateRam } from 'api/sanpham/thuonghieu';
 
 const style = {
     position: 'absolute',
@@ -150,7 +150,7 @@ export default function ModalUpdate({fetchRams, info}) {
                                 CHỈNH SỬA
                             </h2>
                             <TextField 
-                                label="Tên Nhu Cầu" 
+                                label="Tên Thương Hiệu" 
                                 style={{ width: '100%' }} 
                                 name="ten"
                                 error={!!error.ten}

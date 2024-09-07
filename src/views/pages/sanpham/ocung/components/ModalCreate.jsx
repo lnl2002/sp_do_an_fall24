@@ -134,10 +134,10 @@ export default function TransitionsModal({fetchRams}) {
                                     fontSize: '30px'
                                 }}
                             >
-                                THÊM RAM
+                                THÊM Ổ CỨNG
                             </h2>
                             <TextField 
-                                label="Tên RAM" 
+                                label="Tên Ổ Cứng" 
                                 style={{ width: '100%' }} 
                                 name="ten"
                                 error={!!error.ten}

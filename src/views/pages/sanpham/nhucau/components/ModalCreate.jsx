@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import { Add } from '@mui/icons-material';
 import { TextField } from '@mui/material';
 import { useState } from 'react';
-import { createNewRam } from 'api/sanpham/ram';
+import { createNewRam } from 'api/sanpham/nhucau';
 import { toast } from 'react-toastify';
 import { NotificationStatus } from 'utils/notification';
 
@@ -31,14 +31,12 @@ export default function TransitionsModal({fetchRams}) {
 
     const [ram, setRam] = useState({
         ten: "",
-        dungLuong: "",
-        tocDoBus: "",
+        moTa: "",
         trangThai: 1
     });
     const [error, setError] = useState({
         ten: "",
-        dungLuong: "",
-        tocDoBus: "",
+        moTa: "",
         trangThai: 1
     });
 
@@ -61,15 +59,13 @@ export default function TransitionsModal({fetchRams}) {
     const resetForm = () => {
         setRam({
             ten: "",
-            dungLuong: "",
-            tocDoBus: "",
+            moTa: "",
             trangThai: 1
         });
 
         setError({
             ten: "",
-            dungLuong: "",
-            tocDoBus: "",
+            moTa: "",
             trangThai: 1
         });
     };
@@ -89,9 +85,8 @@ export default function TransitionsModal({fetchRams}) {
 
         if (formValid) {
            const res = await createNewRam({
-            dungLuong: ram.dungLuong,
             ten: ram.ten,
-            tocDoBus: ram.tocDoBus,
+            moTa: ram.moTa,
             trangThai: ram.trangThai
            })
            
@@ -139,10 +134,10 @@ export default function TransitionsModal({fetchRams}) {
                                     fontSize: '30px'
                                 }}
                             >
-                                THÊM RAM
+                                THÊM NHU CẦU
                             </h2>
                             <TextField 
-                                label="Tên RAM" 
+                                label="Tên Nhu Cầu" 
                                 style={{ width: '100%' }} 
                                 name="ten"
                                 error={!!error.ten}
@@ -150,19 +145,11 @@ export default function TransitionsModal({fetchRams}) {
                                 onChange={handleChange}
                             />
                             <TextField 
-                                label="Dung lượng" 
+                                label="Mô tả" 
                                 style={{ width: '100%' }} 
-                                name="dungLuong"
-                                error={!!error.dungLuong}
-                                helperText={error.dungLuong}
-                                onChange={handleChange}
-                            />
-                            <TextField 
-                                label="Tốc độ Bus" 
-                                style={{ width: '100%' }} 
-                                name="tocDoBus"
-                                error={!!error.tocDoBus}
-                                helperText={error.tocDoBus}
+                                name="moTa"
+                                error={!!error.moTa}
+                                helperText={error.moTa}
                                 onChange={handleChange}
                             />
                         </div>

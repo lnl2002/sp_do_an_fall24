@@ -90,10 +90,22 @@ const quanLy = {
                     url: '/sanpham/hedieuhanh/danhsach'
                   },
                   {
+                    id: 'nhucau',
+                    title: 'Nhu Cầu',
+                    type: 'item',
+                    url: '/sanpham/nhucau/danhsach'
+                  },
+                  {
                     id: 'mausac',
                     title: 'Màu sắc',
                     type: 'item',
                     url: '/sanpham/mausac/danhsach'
+                  },
+                  {
+                    id: 'thuonghieu',
+                    title: 'Thương Hiệu',
+                    type: 'item',
+                    url: '/sanpham/thuonghieu/danhsach'
                   }
             ]
         },
